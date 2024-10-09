@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void tri(int tab[], int taille) {
-    for (int i = 0; i < taille - 1; i++)
+void sort(int tab[], int size) {
+    for (int i = 0; i < size - 1; i++)
     {
-        for (int j = 0; j < taille - i - 1; j++)
+        for (int j = 0; j < size - i - 1; j++)
         {
             if(tab[j] > tab[j + 1]){
                 int temp = tab[j];
@@ -17,31 +17,60 @@ void tri(int tab[], int taille) {
 
 
 int main() {
-    int taille;
-    printf("Taille du tableau : ");
-    scanf_s("%d", &taille);
+    int size;
+    char choice;
+
+    do {
+
+        printf_s("========================================\n");
+        printf_s("       Bubble sort \ Tri a bulles       \n");
+        printf_s("========================================\n");
+
+        printf("Size of the array : ");
+        scanf_s("%d", &size);
     
-    int* tab = (int*)malloc(taille * sizeof(int));
-    if (tab == NULL) {
-        printf("Erreur d'allocation mémoire.\n");
-        return 1;
-    }
+        int* tab = (int*)malloc(size * sizeof(int));
+        if (tab == NULL) {
+            printf("Memory allocation error.\n");
+            return 1;
+        }
 
-    for (int i = 0; i < taille; i++)
-    {
-        printf("Remplir le tableau : ");
-        scanf_s("%d", &tab[i]);
-    }
+        for (int i = 0; i < size; i++)
+        {
+            printf("Number %d : ", i + 1);
+            scanf_s("%d", &tab[i]);
+        }
 
-    printf("Contenu du tableau :\n");
+        printf("Unsorted array : ");
+        for (int i = 0; i < size; i++) {
+            printf("%d ", tab[i]);
+        }
 
-    tri(tab, taille);
+        printf("\n");
 
-    for (int i = 0; i < taille; i++) {
-        printf("%d ", tab[i]);
-    }
+        sort(tab, size);
 
-    free(tab);
+        printf("Sorted array: ");
+        for (int i = 0; i < size; i++) {
+            printf("%d ", tab[i]); 
+        }
+
+        printf("\n");
+
+        free(tab);
+
+        printf("Appuyer sur 'c' pour continuer ou 'q' pour quitter : ");
+
+        while (getchar() != '\n');
+        choice = getchar();
+
+    } while (choice != 'q');
+
+    printf("Bye\n");
+
 
     return 0;
+
 }
+
+

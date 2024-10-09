@@ -66,7 +66,9 @@ int main() {
 
     } while (choice != 'q');
 
-    printf("Bye\n");
+    printf_s("========================================\n");
+    printf_s("                  Bye                   \n");
+    printf_s("========================================\n");
 
 
     return 0;
